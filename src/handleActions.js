@@ -8,3 +8,5 @@ const handleActions = (handlers, initialState) => {
   }
   return handleActionsInner
 }
+
+export default handleActions

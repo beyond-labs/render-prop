@@ -4,7 +4,7 @@
   "description": "Makes using the \"render prop\" technique a little easier.",
   "author": "Ashton Six <me@ashtonsix.com> (ashtonsix.com)",
   "license": "ISC",
-  "main": "build/index.js",
+  "main": "build/render-prop.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"

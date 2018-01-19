@@ -34,7 +34,6 @@ const compare = (a, b, comparison = ['[]']) => {
   }
 
   for (const comparison of comparison) {
-    const stack = []
     const keys = comparison.split('.')
     if (compareOne(a, b, keys)) return true
   }
