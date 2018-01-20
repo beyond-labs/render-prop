@@ -1,4 +1,5 @@
 import React from 'react'
+import compare from './compare'
 
 class RenderProp extends React.Component {
   constructor() {
@@ -27,8 +28,21 @@ class RenderProp extends React.Component {
     }
   }
   subscriptions = []
-  subscribeTo(store, callback) {
-    const unsubscribe = store.subscribe(callback)
+  subscribeTo(store, callback, stateChanged) {
+    let prevState = store.getState()
+    function callbackWithEqualityCheck() {
+      const nextState = store.getState()
+      if (compare(prevState, nextState, stateChanged)) {
+        prevState = nextState
+        callback()
+      } else {
+        prevState = nextState
+      }
+    }
+
+    const unsubscribe = store.subscribe(
+      stateChanged ? callbackWithEqualityCheck : callback
+    )
     this.subscriptions.push(unsubscribe)
   }
   componentWillMount() {
