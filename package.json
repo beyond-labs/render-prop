@@ -2,6 +2,12 @@
   "name": "render-prop",
   "version": "0.0.0",
   "description": "Makes using the \"render prop\" technique a little easier.",
+  "keywords": [
+    "react",
+    "state",
+    "render prop"
+  ],
+  "repository": "beyond-labs/render-prop",
   "author": "Ashton Six <me@ashtonsix.com> (ashtonsix.com)",
   "license": "ISC",
   "main": "build/render-prop.js",
