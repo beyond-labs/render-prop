@@ -34,8 +34,8 @@ const compare = (a, b, comparison = ['[]']) => {
     console.warn('compare(...): called with invalid arguments')
   }
 
-  for (const comparison of comparison) {
-    const keys = comparison.replace('{}', '[]').split('.')
+  for (const i in comparison) {
+    const keys = comparison[i].replace('{}', '[]').split('.')
     if (compareOne(a, b, keys)) return true
   }
   return false
