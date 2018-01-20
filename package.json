@@ -1,6 +1,6 @@
 {
   "name": "render-prop",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Makes using the \"render prop\" technique a little easier.",
   "keywords": [
     "react",
