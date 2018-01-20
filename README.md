@@ -34,8 +34,7 @@ const Timer = () => (
 
 ###### Integrating with Stores
 
-Stores help manage state. Here we subscribe to updates on a global store (via
-`this.subscribeTo`):
+Stores help manage state. Here we subscribe to updates on a global store (via `this.subscribeTo`):
 
 ```js
 import React from 'react'
@@ -43,10 +42,12 @@ import RenderProp, {Store} from 'render-prop'
 
 const CounterStore = new Store(
   (state, action) => {
-    if (action.type === 'INCREMENT') {
-      return {counter: state.counter + action.payload}
+    switch (action.type) {
+      case 'INCREMENT':
+        return {counter: state.counter + action.payload}
+      default:
+        return state
     }
-    return state
   },
   {counter: 0}
 )
@@ -84,11 +85,11 @@ const Counter = () => (
 )
 ```
 
+> `Store` is provided for convenience, however `this.subscribeTo` also works with [Redux](https://redux.js.org/).
+
 ###### Using Lifecycle Methods
 
-Models created by `render-prop` are a simple extension of React components. You
-can use props, state and lifecycle methods just like you would anywhere else.
-These methods are available:
+Models created by `render-prop` are a simple extension of React components. You can use props, state and lifecycle methods just like you would anywhere else. These methods are available:
 
 * _willMount()_
 * _didMount()_
@@ -99,27 +100,31 @@ These methods are available:
 * _willUnmount()_
 * _didCatch()_
 
-> PS: we've removed the word "component" from the lifecycle methods to avoid
-> naming collisions with the library itself.
+> We've removed the word "component" from the lifecycle methods to avoid naming collisions with the library itself.
 
 ###### Improving Performance
 
+We want to update our view when one of our `todos` changes, but not when changes occur in other (unrelated) parts of the store's state. You can optionally pass a selector (or array of selectors) to `this.subscribeTo`; now the callback will only be activated when this part of the store's state changes:
+
 ```js
-class ResourceBarModel extends RenderProp {
+class TodosModel extends RenderProp {
   constructor() {
     super()
     this.update = this.bind.update()
-    this.subscribeTo(GlobalStore, this.update)
+    // shallow equality check on every todo in `GlobalStore.getState().todos`
+    this.subscribeTo(GlobalStore, this.update, 'todos.[].{}')
   }
   update() {
     /* ... */
   }
-  shouldUpdate(nextProps, nextState) {
-    return (
-      this.props !== nextProps || compare(this.state, nextState, ['resources'])
-    )
-  }
 }
 ```
 
-###### The `handleActions` Utility
+The `compare` utility implements the selector-based comparison above. Here's how you can use it independently:
+
+```js
+import {compare} from 'render-prop'
+
+// returns `true` if something changed
+compare(stateA, stateB, ['todos.[].{}', 'filter'])
+```
