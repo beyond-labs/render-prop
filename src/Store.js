@@ -1,6 +1,7 @@
 class Store {
-  constructor(reducer) {
+  constructor(reducer, initalState) {
     this.reducer = reducer
+    this.state = initalState
   }
   reducer = () => {}
   state = undefined
@@ -16,7 +17,7 @@ class Store {
   }
   dispatch(action) {
     const listeners = this.listeners
-    this.state = this.reducer(action)
+    this.state = this.reducer(this.state, action)
     for (const k in listeners) listeners[k]()
   }
   getState() {
