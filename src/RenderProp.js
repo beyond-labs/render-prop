@@ -27,8 +27,17 @@ class RenderProp extends React.Component {
       }
     }
   }
+  mounted = false
+  subscribeToBuffer = []
   subscriptions = []
   subscribeTo(store, callback, stateChanged) {
+    // it's unsafe to start subscriptions before the component has mounted, as
+    // we can't garuntee `componentWillUnmount` will be called before then
+    if (!this.mounted) {
+      this.subscribeToBuffer.push([store, callback, stateChanged])
+      return
+    }
+
     let prevState = store.getState()
     function callbackWithEqualityCheck() {
       const nextState = store.getState()
@@ -49,6 +58,13 @@ class RenderProp extends React.Component {
     if (this.willMount) this.willMount()
   }
   componentDidMount() {
+    this.mounted = true
+
+    const subscribeToBuffer = this.subscribeToBuffer
+    for (const i in subscribeToBuffer) {
+      this.subscribeTo.apply(this, subscribeToBuffer[i])
+    }
+
     if (this.didMount) this.didMount()
   }
   componentWillReceiveProps(nextProps) {
@@ -67,8 +83,7 @@ class RenderProp extends React.Component {
   componentWillUnmount() {
     if (this.willUnmount) this.willUnmount()
 
-    // except for this line, RenderProp's lifecycle methods behave identically
-    // to React's. we renamed every method for consistency.
+    this.mounted = false
     this.subscriptions.forEach(unsubscribe => unsubscribe())
   }
   componentDidCatch() {
