@@ -28,13 +28,14 @@ const compareOne = (a, b, keys) => {
 }
 
 const compare = (a, b, comparison = ['[]']) => {
+  if (typeof comparison === 'function') return !!comparison(a, b)
   if (typeof comparison === 'string') comparison = [comparison]
   if (!(comparison instanceof Array)) {
     console.warn('compare(...): called with invalid arguments')
   }
 
   for (const comparison of comparison) {
-    const keys = comparison.split('.')
+    const keys = comparison.replace('{}', '[]').split('.')
     if (compareOne(a, b, keys)) return true
   }
   return false
