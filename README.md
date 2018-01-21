@@ -10,9 +10,9 @@ import RenderProp from 'render-prop'
 class TimerModel extends RenderProp {
   constructor() {
     super()
-    this.state = {counter: 0}
+    this.state = {seconds: 0}
     this.interval = setInterval(() => {
-      this.setState({counter: this.state.seconds + 1})
+      this.setState({seconds: this.state.seconds + 1})
     }, 1000)
   }
   willUnmount() {
@@ -28,7 +28,7 @@ class TimerView extends React.Component {
 }
 
 const Timer = () => (
-  <TimerModel render={({seconds}) => <TimerView seconds={seconds}>} />
+  <TimerModel render={({seconds}) => <TimerView seconds={seconds} />} />
 )
 ```
 
@@ -67,6 +67,8 @@ class CounterModel extends RenderProp {
 
 class CounterView extends React.Component {
   render() {
+    const {counter} = this.props
+
     return (
       <div>
         Value: {counter}
