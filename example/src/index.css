@@ -4,10 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-h1 {
-  margin: 25px 0;
-}
-
+h1,
 h2 {
   margin: 0;
 }
@@ -18,6 +15,14 @@ h2 {
 
 .App-header {
   border-bottom: 1px solid #333;
+}
+
+.App-title h1 {
+  display: inline-block;
+}
+
+.App-title a {
+  padding-left: 6px;
 }
 
 .Section-container {

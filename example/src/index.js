@@ -34,7 +34,17 @@ class App extends React.Component {
     return (
       <div className="App-container">
         <header className="App-header">
-          <h1>Render Prop</h1>
+          <div className="App-title">
+            <h1>Render Prop</h1>
+            <a href="https://github.com/beyond-labs/render-prop">
+              GitHub & Docs
+            </a>{' '}
+            pls star!
+          </div>
+          <p>
+            This library makes using the "render prop" technique a little
+            easier.
+          </p>
         </header>
         <div className="App-content">
           <Section title="Timer" source="Timer.js" component={Timer} />
