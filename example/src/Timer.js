@@ -2,9 +2,8 @@ import React from 'react'
 import RenderProp from 'render-prop'
 
 class TimerModel extends RenderProp {
-  constructor() {
-    super()
-    this.state = {seconds: 0}
+  state = {seconds: 0}
+  didMount() {
     this.interval = setInterval(() => {
       this.setState({seconds: this.state.seconds + 1})
     }, 1000)

@@ -9,9 +9,8 @@ import React from 'react'
 import RenderProp from 'render-prop'
 
 class TimerModel extends RenderProp {
-  constructor() {
-    super()
-    this.state = {seconds: 0}
+  state = {seconds: 0}
+  didMount() {
     this.interval = setInterval(() => {
       this.setState({seconds: this.state.seconds + 1})
     }, 1000)
@@ -54,9 +53,8 @@ const CounterStore = new Store(
 )
 
 class CounterModel extends RenderProp {
-  constructor() {
-    super()
-    this.state = {counter: 0}
+  state = {counter: 0}
+  didMount() {
     this.update = this.update.bind(this)
     this.subscribeTo(CounterStore, this.update)
   }
@@ -114,8 +112,8 @@ import React from 'react'
 import RenderProp from 'render-prop'
 
 class TodosModel extends RenderProp {
-  constructor() {
-    super()
+  state = {}
+  didMount() {
     this.update = this.bind.update()
     // shallow equality check on every todo in `GlobalStore.getState().todos`
     this.subscribeTo(GlobalStore, this.update, 'todos.[].{}')

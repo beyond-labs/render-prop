@@ -14,9 +14,8 @@ const CounterStore = new Store(
 )
 
 class CounterModel extends RenderProp {
-  constructor() {
-    super()
-    this.state = {counter: 0}
+  state = {counter: 0}
+  didMount() {
     this.update = this.update.bind(this)
     this.subscribeTo(CounterStore, this.update)
   }
