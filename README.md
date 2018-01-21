@@ -5,6 +5,7 @@ The term "render prop" ([reactjs.org/docs/render-props](https://reactjs.org/docs
 This library makes using the technique a little easier. Here the "render prop" is called with the value of `this.state`:
 
 ```js
+import React from 'react'
 import RenderProp from 'render-prop'
 
 class TimerModel extends RenderProp {
@@ -109,6 +110,9 @@ Models created by `render-prop` are a simple extension of React components. You 
 We want to update our view when one of our `todos` changes, but not when changes occur in other (unrelated) parts of the store's state. You can optionally pass a selector (or array of selectors) to `this.subscribeTo`; now the callback will only be activated when this part of the store's state changes:
 
 ```js
+import React from 'react'
+import RenderProp from 'render-prop'
+
 class TodosModel extends RenderProp {
   constructor() {
     super()
