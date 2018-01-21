@@ -32,7 +32,7 @@ class RenderProp extends React.Component {
   subscriptions = []
   subscribeTo(store, callback, stateChanged) {
     // it's unsafe to start subscriptions before the component has mounted, as
-    // we can't garuntee `componentWillUnmount` will be called before then
+    // we can't garuntee `componentWillUnmount` will be called until then
     if (!this.mounted) {
       this.subscribeToBuffer.push([store, callback, stateChanged])
       return
