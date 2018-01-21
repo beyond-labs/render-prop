@@ -30,7 +30,6 @@ class RenderProp extends React.Component {
     }
   }
   mounted = false
-  subscribeToBuffer = []
   subscriptions = []
   subscribeTo(store, callback, stateChanged) {
     if (!this.mounted) {
