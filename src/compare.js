@@ -31,7 +31,7 @@ const compare = (a, b, comparison = ['[]']) => {
   if (typeof comparison === 'function') return !!comparison(a, b)
   if (typeof comparison === 'string') comparison = [comparison]
   if (!(comparison instanceof Array)) {
-    console.warn('compare(...): called with invalid arguments')
+    console.warn('compare(...): Called with invalid arguments')
   }
 
   for (const i in comparison) {

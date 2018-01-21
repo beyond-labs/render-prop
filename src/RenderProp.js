@@ -6,7 +6,7 @@ class RenderProp extends React.Component {
     super()
 
     if (new.target === RenderProp) {
-      console.warn('RenderProp is an abstract class! You need to extend it.')
+      console.warn('RenderProp(...): RenderProp is an abstract class! You need to extend it.')
     }
 
     const reactLifecycleMethods = {
@@ -23,7 +23,9 @@ class RenderProp extends React.Component {
     for (const reactMethod in reactLifecycleMethods) {
       const ourMethod = reactLifecycleMethods[reactMethod]
       if (new.target.prototype.hasOwnProperty(reactMethod)) {
-        console.warn(`please rename ".${reactMethod}" to ".${ourMethod}"`)
+        console.warn(
+          `RenderProp(...): Please rename ".${reactMethod}" to ".${ourMethod}"`
+        )
       }
     }
   }
@@ -31,10 +33,10 @@ class RenderProp extends React.Component {
   subscribeToBuffer = []
   subscriptions = []
   subscribeTo(store, callback, stateChanged) {
-    // it's unsafe to start subscriptions before the component has mounted, as
-    // we can't garuntee `componentWillUnmount` will be called until then
     if (!this.mounted) {
-      this.subscribeToBuffer.push([store, callback, stateChanged])
+      console.warn(
+        'RenderProp(...): Cannot use ".subscribeTo" in an unmounted component. Have you tried using ".didMount"?'
+      )
       return
     }
 
@@ -59,12 +61,6 @@ class RenderProp extends React.Component {
   }
   componentDidMount() {
     this.mounted = true
-
-    const subscribeToBuffer = this.subscribeToBuffer
-    for (const i in subscribeToBuffer) {
-      this.subscribeTo.apply(this, subscribeToBuffer[i])
-    }
-
     if (this.didMount) this.didMount()
   }
   componentWillReceiveProps(nextProps) {
@@ -99,7 +95,7 @@ class RenderProp extends React.Component {
     } else if (typeof render === 'function') {
       return render(state)
     } else {
-      console.warn('".render" prop is missing or invalid')
+      console.warn('RenderProp(...): ".render" prop is missing or invalid')
       return null
     }
   }
