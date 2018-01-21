@@ -58,7 +58,7 @@ class RenderProp extends React.Component {
       stateChanged ? callbackWithEqualityCheck : callback
     )
     this.subscriptions.push(unsubscribe)
-    ;(stateChanged ? callbackWithEqualityCheck : callback)()
+    callback()
   }
   componentWillMount() {
     if (this.willMount) this.willMount()
