@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import Timer from './Timer'
 import Counter from './Counter'
+import Todos from './Todos'
 
 class Section extends React.Component {
   render() {
@@ -49,6 +50,7 @@ class App extends React.Component {
         <div className="App-content">
           <Section title="Timer" source="Timer.js" component={Timer} />
           <Section title="Counter" source="Counter.js" component={Counter} />
+          <Section title="Todos" source="Todos/" component={Todos} />
         </div>
       </div>
     )
