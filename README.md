@@ -107,7 +107,7 @@ Models created by `render-prop` are a simple extension of React components. You 
 
 ###### Improving Performance
 
-We want to update our view when one of our `todos` changes, but not when changes occur in other (unrelated) parts of the store's state. You can optionally pass a selector (or array of selectors) to `this.subscribeTo`; now the callback will only be activated when this part of the store's state changes:
+We want to update our view when one of our `todos` changes, but not when changes occur in other (unrelated) parts of the store's state. You can optionally pass a selector (or a function, or an array of selectors) to `this.subscribeTo`; now the callback will only be activated when this part of the store's state changes:
 
 ```js
 import React from 'react'
