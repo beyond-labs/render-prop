@@ -6,7 +6,9 @@ class RenderProp extends React.Component {
     super()
 
     if (new.target === RenderProp) {
-      console.warn('RenderProp(...): RenderProp is an abstract class! You need to extend it.')
+      console.warn(
+        'RenderProp(...): RenderProp is an abstract class! You need to extend it.'
+      )
     }
 
     const reactLifecycleMethods = {
@@ -28,6 +30,8 @@ class RenderProp extends React.Component {
         )
       }
     }
+
+    this.subscribeTo = this.subscribeTo.bind(this)
   }
   mounted = false
   subscriptions = []

@@ -2,6 +2,10 @@ class Store {
   constructor(reducer, initalState) {
     this.reducer = reducer
     this.state = initalState
+
+    this.subscribe = this.subscribe.bind(this)
+    this.dispatch = this.dispatch.bind(this)
+    this.getState = this.getState.bind(this)
   }
   reducer = () => {}
   state = undefined
