@@ -1,7 +1,7 @@
 {
   "name": "render-prop-example",
-  "version": "0.1.2",
-  "homepage": "https://beyond-labs.github.io/render-prop",
+  "version": "0.1.3",
+  "homepage": "https://ashtonsix.com/render-prop",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
@@ -12,11 +12,11 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "gh-pages": "^1.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "classnames": "2.2.5",
+    "gh-pages": "1.1.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-scripts": "1.1.0",
-    "render-prop": "^0.1.2"
+    "render-prop": "latest"
   }
 }
