@@ -18,7 +18,6 @@ class TodosItemModel extends RenderProp {
   }
   didMount() {
     this.update = this.update.bind(this)
-    this.update()
     this.subscribeTo(TodosStore, this.update, `todos.${this.props.id}.{}`)
   }
   update() {
