@@ -9,6 +9,12 @@ h2 {
   margin: 0;
 }
 
+.Network input {
+  display: block;
+  min-width: 250px;
+  padding: 5px 8px;
+}
+
 .App-container {
   margin: 25px 18px;
 }
