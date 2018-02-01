@@ -1,6 +1,6 @@
 # Render Prop
 
-> More example available at [ashtonsix.com/render-prop](https://ashtonsix.com/render-prop/)
+> Demo available at [ashtonsix.com/render-prop](https://ashtonsix.com/render-prop/)
 
 The term "render prop" ([reactjs.org/docs/render-props](https://reactjs.org/docs/render-props.html)) refers to a simple technique for sharing code between React components using a prop whose value is a function.
 
